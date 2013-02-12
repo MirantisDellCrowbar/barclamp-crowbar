@@ -620,9 +620,11 @@ class NodeObject < ChefObject
       found = if_map["#{speeds[x]}#{if_cnt}"] unless found
     }
     case m[1]
-      when '+': (desired..speeds.length).each(&filter)
-      when '-': desired.downto(0,&filter)
-      when '?':
+      when '+' then
+        (desired..speeds.length).each(&filter)
+      when '-' then
+        desired.downto(0,&filter)
+      when '?' then
         (desired..speeds.length).each(&filter)
         desired.downto(0,&filter) unless found
       else
