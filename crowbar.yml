@@ -308,7 +308,7 @@ rpms:
 
 gems:
   pkgs:
-    # epill stiff
+    # bluepill stiff
     - i18n
     - state_machine-0.9.4
     - bluepill-0.0.51
