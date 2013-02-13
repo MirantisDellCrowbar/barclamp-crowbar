@@ -311,7 +311,7 @@ gems:
     # epill stiff
     - i18n
     - state_machine-0.9.4
-    - epill-0.0.51
+    - bluepill-0.0.51
     # crowbar stuff
     - rake-10.0.3
     - activesupport-2.3.14
