@@ -313,6 +313,13 @@ gems:
     - state_machine-0.9.4
     - bluepill-0.0.51
     # crowbar stuff
+	- syslogger
+	- net-http-digest_auth
+	- sendfile
+    - sqlite3-ruby
+    - rdoc
+    - xml-simple
+    - libxml-ruby
     - rake-10.0.3
     - activesupport-2.3.14
     - rack-1.1.6
