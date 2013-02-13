@@ -308,28 +308,30 @@ rpms:
 
 gems:
   pkgs:
-    # bluepill stiff
+    # epill stiff
     - i18n
     - state_machine-0.9.4
-    - bluepill-0.0.51
+    - epill-0.0.51
     # crowbar stuff
-    - rake
-    - json-1.5.2
-    - syslogger
-    - sass
-    - simple-navigation
-    - haml
-    - net-http-digest_auth
-    - rails-2.3.14
+    - rake-10.0.3
     - activesupport-2.3.14
-    - bundler
-    - builder
-    - activesupport
-    - rainbows
-    - sendfile
-    - sqlite3-ruby
-    - rdoc
-    - net-ssh-multi
+    - rack-1.1.6
+    - actionpack-2.3.14
+    - actionmailer-2.3.14
+    - activerecord-2.3.14
+    - activeresource-2.3.14
+    - daemons-1.1.9
+    - eventmachine-1.0.0
+    - i18n-0.6.1
     - formtastic-1.2.4
-    - xml-simple
-    - libxml-ruby
+    - haml-3.1.8
+    - json-1.5.2
+    - kgio-2.8.0
+    - rails-2.3.14
+    - raindrops-0.10.0
+    - unicorn-4.6.0
+    - rainbows-4.4.3
+    - sass-3.2.5
+    - simple-navigation-3.10.0
+    - thin-1.5.0
+    - bundler-1.2.3

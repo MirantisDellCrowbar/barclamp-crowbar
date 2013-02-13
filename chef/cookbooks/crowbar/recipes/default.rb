@@ -192,7 +192,7 @@ cookbook_file "/etc/logrotate.d/chef-server"
 bluepill_service "crowbar-webserver" do
   variables(:processes => [ {
                               "name" => "rainbows",
-                              "start_command" => "rainbows -E production -c rainbows.cfg",
+                              "start_command" => "bundle exec rainbows -E production -c rainbows.cfg",
                               "stdout" => "/dev/null",
                               "stderr" => "/dev/null",
                               "working_dir" => "/opt/dell/crowbar_framework",

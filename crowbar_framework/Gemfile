@@ -1,14 +1,14 @@
-source :rubygems
+source "http://127.0.0.1:3001"
 
-gem "rails", "2.3.12"
+gem "rails", "2.3.14"
 gem "haml"
 gem "sass"
 gem "simple-navigation"
 gem "i18n"
-gem "json"
-gem "chef"
+gem "json", "1.5.2"
 gem "thin"
-gem "formtastic"
+gem "rainbows", "4.4.3"
+gem "formtastic", "1.2.4"
 
 group :development do
   # bundler requires these gems in development
