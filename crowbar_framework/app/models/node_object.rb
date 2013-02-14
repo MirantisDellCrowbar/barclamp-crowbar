@@ -20,7 +20,7 @@ class NodeObject < ChefObject
   def self.find(search)
     answer = []
     if CHEF_ONLINE
-      nodes = if search.nil?
+      nodes = if search == nil
         ChefObject.query_chef.search "node"
       else
         ChefObject.query_chef.search "node", "#{chef_escape(search)}"
