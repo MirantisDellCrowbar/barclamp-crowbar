@@ -112,7 +112,7 @@ debs:
     #- deb http://www.rabbitmq.com/debian/ testing main
   build_pkgs:
     - ruby1.8-dev
-    - rubygems1.8
+    - rubygems
     - build-essential
     - libsqlite3-dev
     - dpkg-dev
@@ -313,11 +313,11 @@ gems:
     - state_machine-0.9.4
     - bluepill-0.0.51
     # crowbar stuff
-	- syslogger
-	- net-http-digest_auth
-	- sendfile
+    - syslogger
+    - net-http-digest_auth
+    - sendfile
     - sqlite3-ruby
-    - rdoc
+    # rdoc
     - xml-simple
     - libxml-ruby
     - rake-10.0.3
