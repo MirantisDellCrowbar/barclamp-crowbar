@@ -148,6 +148,7 @@ debs:
     - chef-server-webui
     - kwalify
     - libcurl4-gnutls-dev
+    - libgecode-dev
     # minicom stuff
     - minicom
     # nscd stuff
@@ -342,3 +343,5 @@ gems:
     - simple-navigation-3.10.0
     - thin-1.5.0
     - bundler-1.2.3
+    - dep_selector
+
