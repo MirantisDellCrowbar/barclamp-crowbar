@@ -14,6 +14,8 @@
 # 
 # Author: RobHirschfeld 
 # 
+require 'chef'
+
 class ChefObject
 
   extend CrowbarOffline
@@ -36,12 +38,25 @@ class ChefObject
     end
   end
 
-  def self.query_chef
+  # improved query_chef method of search objects in chef
+  #def self.query_chef
+  #  begin
+  #    chef_init
+  #    return Chef::Search::Query.new
+  #  rescue
+  #    return Chef::Node.new
+  #  end
+  #end
+  def self.search *params
     begin
-      chef_init
-      return Chef::Search::Query.new
-    rescue
-      return Chef::Node.new
+      if @chef_query == nil
+        chef_init
+        @chef_query = Chef::Search::Query.new
+      end
+      return @chef_query.search *params
+    rescue => e
+      Chef::Log.fatal "#{__FILE__}[#{__LINE__}] #{e}"
+      return [[],0.0]
     end
   end
 

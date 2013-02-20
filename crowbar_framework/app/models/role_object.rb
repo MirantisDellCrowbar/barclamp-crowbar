@@ -35,7 +35,7 @@ class RoleObject < ChefObject
     roles = []
     if CHEF_ONLINE
       #TODO this call could be moved to fild_roles_by_search
-      arr = ChefObject.query_chef.search "role", "name:#{chef_escape(name)}"
+      arr = ChefObject.search "role", "name:#{chef_escape(name)}"
       if arr[2] != 0
         roles = arr[0].map { |x| RoleObject.new x }
         roles.delete_if { |x| x.nil? or x.role.nil? }
@@ -50,9 +50,9 @@ class RoleObject < ChefObject
     roles = []
     if CHEF_ONLINE
       arr = if search.nil?
-        ChefObject.query_chef.search "role"
+        ChefObject.search "role"
       else
-        ChefObject.query_chef.search "role", search
+        ChefObject.search "role", search
       end
       if arr[2] != 0
         roles = arr[0].map { |x| RoleObject.new x }

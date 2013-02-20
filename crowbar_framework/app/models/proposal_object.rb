@@ -36,7 +36,7 @@ class ProposalObject < ChefObject
     props = [] 
     begin
       if CHEF_ONLINE
-        arr = ChefObject.query_chef.search("crowbar", "id:#{chef_escape(search)}") 
+        arr = ChefObject.search("crowbar", "id:#{chef_escape(search)}")
         if arr[2] != 0
           props = arr[0].map do |x| 
             ProposalObject.new x 

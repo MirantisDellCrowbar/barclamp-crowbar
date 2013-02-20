@@ -21,9 +21,9 @@ class NodeObject < ChefObject
     answer = []
     if CHEF_ONLINE
       nodes = if search.nil?
-        ChefObject.query_chef.search "node"
+        ChefObject.search "node"
       else
-        ChefObject.query_chef.search "node", "#{chef_escape(search)}"
+        ChefObject.search "node", "#{chef_escape(search)}"
       end
       if nodes[2] != 0 and !nodes[0].nil?
         nodes[0].delete_if { |x| x.nil? }
