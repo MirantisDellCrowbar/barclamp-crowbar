@@ -25,6 +25,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # nodes
   map.resources :nodes, :only => [:index, :new]
+  map.connect 'nodes/:name/attributes/*keys', :controller => 'nodes', :action => 'attributes',
+              :requirements => { :name => /.*/, :keys => /.*/ }
+
   map.nodes_status 'nodes/status.:format', :controller => 'nodes', :action => 'status', :conditions => { :method => :get }
   map.nodes_list 'nodes/list', :controller => 'nodes', :action => 'list'
   map.nodes_families 'nodes/families', :controller=>'nodes', :action=>'families'
@@ -37,7 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   map.nodes_barclamp 'nodes/:controller/1.0', :action => 'nodes'  
   map.update_node 'nodes/:name/update', :controller => 'nodes', :action=>'update', :requirements => { :name => /.*/ }
   map.node 'nodes/:name', :controller => 'nodes', :action => 'show', :requirements => { :name => /.*/ }
-  
+
   # this route allows any barclamp to extend the network view
   map.network_barclamp 'network/:controller/1.0', :action=>'network'
   # these paths require the network barclamp 
