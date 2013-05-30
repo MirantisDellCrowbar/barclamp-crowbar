@@ -800,6 +800,11 @@ class NodeObject < ChefObject
     @node["ipmi"]["bmc_password"] rescue nil
   end
 
+  # it allow set attributes of current node
+  def set
+    @node
+  end
+
   def set_state(state)
     if CHEF_ONLINE
       # use the real transition function for this

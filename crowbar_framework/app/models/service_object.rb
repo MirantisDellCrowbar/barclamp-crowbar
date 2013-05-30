@@ -1094,7 +1094,26 @@ class ServiceObject
 
       # Exec command
       # the -- tells sudo to stop interpreting options
-      exec("sudo -i -u root -- ssh root@#{node} #{command}")
+
+      # example for using reboot feature in recipes
+      # unless ["complete","rebooting"].include? node[:reboot]
+      #   node[:reboot] = "require"
+      #   node.save
+      # end
+
+      node_object = NodeObject.find_node_by_name(node)
+      if node_object[:reboot] == "require"
+        command = "#{command} && reboot"
+        node_object.set[:reboot] = "rebooting"
+        node_object.save
+      end
+      exit(1) unless system("sudo -i -u root -- ssh root@#{node} \"#{command}\"")
+      if node_object[:reboot] == "rebooting"
+        node_object.set[:reboot] == "complete"
+        node_object.save
+      end
+      RemoteNode.ready?(node, 600) ? exit(0) : exit(1)
+
     }
   end
 
