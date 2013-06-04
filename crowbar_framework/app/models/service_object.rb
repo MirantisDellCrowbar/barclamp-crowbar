@@ -1101,18 +1101,23 @@ class ServiceObject
       #   node.save
       # end
 
-      node_object = NodeObject.find_node_by_name(node)
-      if node_object[:reboot] == "require"
-        command = "#{command} && reboot"
-        node_object.set[:reboot] = "rebooting"
-        node_object.save
-      end
       exit(1) unless system("sudo -i -u root -- ssh root@#{node} \"#{command}\"")
-      if node_object[:reboot] == "rebooting"
-        node_object.set[:reboot] == "complete"
-        node_object.save
+      node_object = NodeObject.find_node_by_name(node)
+      puts "LAWL #{node} #{node_object[:reboot]}"
+      if node_object[:reboot] == "require"
+        puts "going to reboot #{node} due to #{node_object[:reboot]}"
+        unless system("sudo -i -u root -- ssh root@#{node} \"reboot\"")
+          exit(1)
+        else
+          if RemoteNode.ready?(node, 600)
+            exit(1) unless system("sudo -i -u root -- ssh root@#{node} \"#{command}\"")
+            node_object.set[:reboot] = "complete"
+            node_object.save
+          else
+            exit(1)
+          end
+        end
       end
-      RemoteNode.ready?(node, 600) ? exit(0) : exit(1)
 
     }
   end
