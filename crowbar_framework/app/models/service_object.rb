@@ -1103,7 +1103,6 @@ class ServiceObject
 
       exit(1) unless system("sudo -i -u root -- ssh root@#{node} \"#{command}\"")
       node_object = NodeObject.find_node_by_name(node)
-      puts "LAWL #{node} #{node_object[:reboot]}"
       if node_object[:reboot] == "require"
         puts "going to reboot #{node} due to #{node_object[:reboot]}"
         unless system("sudo -i -u root -- ssh root@#{node} \"reboot\"")
