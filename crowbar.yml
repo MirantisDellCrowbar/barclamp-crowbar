@@ -238,7 +238,6 @@ gems:
     - sqlite3-ruby
     # rdoc
     - net-ssh-multi
-    - formtastic-1.2.4
     - xml-simple
     - libxml-ruby
     - kwalify
