@@ -160,7 +160,6 @@ rpms:
     - gcc
     - kernel-devel
     - sqlite-devel
-    - mysql-devel
   pkgs:
     # apache stuff
     - httpd
