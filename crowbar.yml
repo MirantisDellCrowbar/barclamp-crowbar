@@ -183,7 +183,7 @@ rpms:
     - gcc
     - kernel-devel
     - sqlite-devel
-    - mysql-devel
+    # mysql-devel
   pkgs:
     # apache stuff
     - httpd
@@ -202,6 +202,7 @@ rpms:
     - flex
     - bison
     - patch
+    # e2fsprogs
     # crowbar stuff
     - curl
     - sqlite
