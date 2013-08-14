@@ -202,7 +202,7 @@ rpms:
     - flex
     - bison
     - patch
-    # e2fsprogs
+    - e2fsprogs
     # crowbar stuff
     - curl
     - sqlite
