@@ -268,4 +268,7 @@ gems:
     - libxml-ruby
     - kwalify
 
+pips:
+  - uwsgi
+
 build_cmd: build/build.sh
