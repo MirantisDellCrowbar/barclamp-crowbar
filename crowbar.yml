@@ -207,7 +207,7 @@ rpms:
     - curl
     - sqlite
     - sqlite-devel
-    - rubygem-chef-server
+    # rubygem-chef-server
     - rubygem-kwalify
     - createrepo
     # minicom stuff
@@ -261,6 +261,8 @@ gems:
     - sendfile
     - sqlite3-ruby
     - app_config-1.0.2
+    - chef-server-10.30.2
+    - chef-10.30.2
     # rdoc
     - net-ssh-multi
     - formtastic-1.2.4
