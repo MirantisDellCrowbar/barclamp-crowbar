@@ -269,3 +269,5 @@ gems:
     - kwalify
 pips:
   - uwsgi
+
+build_cmd: build/build.sh
