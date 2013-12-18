@@ -1,6 +1,7 @@
 actions :enable, :disable
 
-default_action :enable
+# default_action don't work on chef <10.8
+#default_action :enable
 
 attribute :name, :kind_of => String
 
