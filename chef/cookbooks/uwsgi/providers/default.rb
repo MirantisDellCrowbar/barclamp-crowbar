@@ -76,7 +76,7 @@ action :enable do
        :config => file_enable,
        :options => options
      })
-    notifies :restart, "service[#{new_resource.service_name}]", :immediately
+    notifies :restart, resources(:service => new_resource.service_name), :immediately
   end
 
   service "#{new_resource.service_name}" do
@@ -95,7 +95,7 @@ action :enable do
     owner "root"
     group "root"
     mode 00600
-    notifies :restart, "service[#{new_resource.service_name}]", :immediately
+    notifies :restart, resources(:service => new_resource.service_name), :immediately
   end
 
   # enabling config
