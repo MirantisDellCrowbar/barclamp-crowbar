@@ -2,7 +2,12 @@ action :enable do
 
   # install pip and developer headers
   package "python-pip"
-  package "python-dev"
+  case node[:platform]
+    when "ubuntu","debian"
+      package "python-dev"
+    when "redhat","centos"
+      package "python-devel"
+  end
 
   provisioner = search(:node, "roles:provisioner-server").first
   proxy_addr = provisioner[:fqdn]
