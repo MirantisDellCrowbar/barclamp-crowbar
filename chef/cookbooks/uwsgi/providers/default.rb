@@ -1,5 +1,6 @@
 action :enable do
 
+  require 'rexml/document'
   # install pip and developer headers
   package "python-pip"
   case node[:platform]

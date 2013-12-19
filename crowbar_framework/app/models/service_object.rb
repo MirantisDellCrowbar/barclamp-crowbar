@@ -33,6 +33,7 @@ class ServiceObject
   def initialize(thelogger)
     @bc_name = 'unknown'
     @logger = thelogger
+    @validation_errors = []
   end
 
   # OVERRIDE AS NEEDED! true if barclamp can have multiple proposals
@@ -40,6 +41,10 @@ class ServiceObject
     false
   end
 
+  def validation_error message
+    @logger.warn message
+    @validation_errors << message
+  end
 
   def simple_proposal_ui?
     proposals = ProposalObject.find_proposals("crowbar")
@@ -735,23 +740,53 @@ class ServiceObject
     Rails.logger.info "validating proposal #{@bc_name}"
 
     errors = validator.validate(proposal)
-    if errors && !errors.empty?
-      strerrors = ""
-      errors.each do |e|
-        strerrors += "#{e.message}\n"
-      end
-      Rails.logger.info "validation errors in proposal #{@bc_name}"
-      raise Chef::Exceptions::ValidationFailed.new(strerrors)
-    end
+    @validation_errors = errors.map {|e| e.message}
+    handle_validation_errors
   end
 
   #
   # This does additional validation of the proposal, but after it has been
   # saved. This should be used if the errors are easy to fix in the proposal.
   #
-  # This can be overridden to get better validation if needed.
+  # This can be overridden to get better validation if needed. Call it
+  # after your overriden method for error handling.
   #
   def validate_proposal_after_save proposal
+    handle_validation_errors
+  end
+
+  #
+  # Ensure that the proposal contains exactly one role
+  #
+  def validate_one_role(proposal, role)
+    elements = proposal["deployment"][@bc_name]["elements"]
+
+    if not elements.has_key?(role) or elements[role].length != 1
+      validation_error("Need one (and only one) #{role} node.")
+    end
+  end
+
+  #
+  # Look for a database proposal. If :active is specified, then it will
+  # return the first active database proposal, otherwise both active and
+  # inactive are searched, in that order.
+  #
+  def validate_has_database_proposal(kind=nil)
+    databaseService = DatabaseService.new(@logger)
+
+    dbs = databaseService.list_active[1]
+
+    unless kind == :active
+      dbs = databaseService.proposals[1] if dbs.empty?
+    end
+
+    validation_error("A#{"n active" if kind == :active} database proposal is required.") if dbs.blank? || dbs[0].blank?
+
+    dbs[0]
+  end
+
+  def validate_has_active_database_proposal
+    validate_has_database_proposal :active
   end
 
   def _proposal_update(proposal)
@@ -1263,6 +1298,13 @@ class ServiceObject
     }
   end
 
+  private
 
+  def handle_validation_errors
+    if @validation_errors && @validation_errors.length > 0
+      Rails.logger.info "validation errors in proposal #{@bc_name}"
+      raise Chef::Exceptions::ValidationFailed.new("#{@validation_errors.join("\n")}\n")
+    end
+  end
 end
 
