@@ -316,3 +316,6 @@ gems:
     - xml-simple
     - libxml-ruby
     - kwalify
+    # chef
+    - chef-10.30.2
+    - chef-server-10.30.2
