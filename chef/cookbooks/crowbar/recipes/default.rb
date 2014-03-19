@@ -48,7 +48,7 @@ pkglist.each {|p|
 
 if node[:platform] != "suse"
   gemlist=%w{rake json syslogger sass simple-navigation 
-     i18n haml net-http-digest_auth rails rainbows }
+     i18n haml net-http-digest_auth rails rainbows chef chef-server}
 
   gemlist.each {|g|
     gem_package g do
