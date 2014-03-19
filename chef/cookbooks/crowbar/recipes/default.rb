@@ -48,13 +48,21 @@ pkglist.each {|p|
 
 if node[:platform] != "suse"
   gemlist=%w{rake json syslogger sass simple-navigation 
-     i18n haml net-http-digest_auth rails rainbows chef chef-server}
+     i18n haml net-http-digest_auth rails rainbows}
 
   gemlist.each {|g|
     gem_package g do
-      action :upgrade
+      action :install
     end
   }
+  gem_package "chef" do
+    action :upgrade
+    options (:force => true)
+  end
+  gem_package "chef-server" do
+    action :upgrade
+    options (:force => true)
+  end
 end
 
 group "crowbar"
