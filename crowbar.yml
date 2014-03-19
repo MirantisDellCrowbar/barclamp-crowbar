@@ -235,6 +235,7 @@ gems:
     # crowbar stuff
     - rails-2.3.17
     - rake-0.8.7
+    - rspec-2.14.1
     - app_config-1.0.2
     - chef-10.30.4
     - haml-3.1.6
