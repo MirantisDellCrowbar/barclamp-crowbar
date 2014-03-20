@@ -21,10 +21,10 @@ if node[:platform] != "suse"
   include_recipe "bluepill"
 end
 
-#execute "update_chef" do
-#  command "gem install chef chef-server"
-#  not_if { node[:platform] == "suse" }
-#end
+execute "update_chef" do
+  command "gem install chef chef-server"
+  not_if { node[:platform] == "suse" }
+end
 
 pkglist=()
 rainbows_path=""
@@ -53,7 +53,7 @@ pkglist.each {|p|
 
 if node[:platform] != "suse"
   gemlist=%w{rake json syslogger sass simple-navigation 
-     i18n haml net-http-digest_auth rails rainbows chef chef-server }
+     i18n haml net-http-digest_auth rails rainbows }
 
   gemlist.each {|g|
     gem_package g do

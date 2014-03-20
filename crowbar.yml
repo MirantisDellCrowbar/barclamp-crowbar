@@ -243,8 +243,8 @@ gems:
     - i18n
     - state_machine-0.9.4
     - bluepill-0.0.51
-    - chef-10.30.4
-    - chef-server-10.30.4
+    - chef-10.22.0
+    - chef-server-10.22.0
     # crowbar stuff
     - rake
     - json-1.5.2
