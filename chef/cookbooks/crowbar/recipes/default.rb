@@ -21,11 +21,6 @@ if node[:platform] != "suse"
   include_recipe "bluepill"
 end
 
-execute "update_chef" do
-  command "gem install chef chef-server"
-  not_if { node[:platform] == "suse" }
-end
-
 pkglist=()
 rainbows_path=""
 logdir = "/var/log/crowbar"
