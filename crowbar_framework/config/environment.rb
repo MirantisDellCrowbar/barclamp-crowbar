@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-RAILS_GEM_VERSION = "2.3.17" unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = "2.3.18" unless defined? RAILS_GEM_VERSION
 require File.expand_path("../boot", __FILE__)
 
 Rails::Initializer.run do |config|
