@@ -22,7 +22,7 @@ gem_package "i18n" do
 end
 
 gem_package "activesupport" do
-  version "2.3.18"
+  version "2.3.17"
   action :install
 end
 
