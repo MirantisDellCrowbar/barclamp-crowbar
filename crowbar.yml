@@ -233,7 +233,7 @@ gems:
     - bluepill-0.0.45
 
     # crowbar stuff
-    - rails-2.3.17
+    - rails-2.3.18
     - rake-0.8.7
     - rspec-2.14.1
     - app_config-1.0.2
